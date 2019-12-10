@@ -1,0 +1,2 @@
+module Buy::ViewItemHelper
+end

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Electroshop</title>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <%= stylesheet_link_tag "buy" %>
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+
+
+
+    <%=link_to "Electroshop", buy_listItems_path , {:class => "navbar-brand"}%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <%=
+
+            if current_user == nil
+              link_to "Log in", login_path, :class => "nav-link"
+            else
+              link_to current_user.email, profile_view_path, :class => "nav-link"
+
+            end
+
+          %>
+        </li>
+        <li class="nav-item">
+          <%=link_to cart_checkout_path, :class => "nav-link" do %>
+            <i class="fa fa-shopping-cart" id="cartIcon"></i>
+
+            <%=session[:shoppingCart].length %> items(<%=@sum%>€)
+          <%end %>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+
+  <div class="row">
+
+    <!-- /.col-lg-3 -->
+
+    <div class="col-lg-9">
+
+      <!-- /.card -->
+
+      <div class="jumbotron text-xs-center">
+        <h1 class="display-3">Thank You!</h1>
+        <p class="lead"><strong>Please check your email</strong> for more details about your delivery</p>
+        <hr>
+        <p>
+          Your order reference is: #<%=@orderId %>
+        </p>
+        <p class="lead">
+          <a class="btn btn-primary btn-sm" <%= link_to "Continue shopping", buy_listItems_path %> </a>
+        </p>
+      </div>
+      <!-- /.card -->
+
+    </div>
+    <!-- /.col-lg-9 -->
+
+  </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Electroshop 2019</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
